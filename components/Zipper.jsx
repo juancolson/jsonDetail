@@ -17,11 +17,24 @@ export default function Zipper({ fileName, data }) {
 		});
 	}
 	return (
-		<div className=' w-screen flex text-center justify-center'>
-			<input type="number" name='folders' id='folderCount' defaultValue={1} placeholder='Enter number of Folders'/>
+		<div className='w-screen flex flex-col text-center justify-center'>
+			<div className='m-2'>
+			<label htmlFor='folders'>Enter number of Folders</label>
+			<input
+				className='p-3 w-12 border border-black ml-1 rounded-xl'
+				type='number'
+				name='folders'
+				id='folderCount'
+				defaultValue={1}
+			/>
+
+			</div>
 			<button
 				className='rounded bg-blue-700 text-white p-2 '
-				onClick={ollo}>Download the zip</button>
+				onClick={ollo}
+			>
+				Download the zip
+			</button>
 		</div>
 	);
 }

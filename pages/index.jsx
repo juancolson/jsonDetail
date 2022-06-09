@@ -76,40 +76,40 @@ const Home = () => {
 			<Head>
 				<title>Tachiyomi - Local Manga Detail</title>
 			</Head>
-			<form onSubmit={tryGet} className='m-3 w-11/12'>
+			<form onSubmit={tryGet} className='m-2 w-full'>
 				<input
 					type='number'
 					name='nuke_code'
-					className='border border-black w-full'
+					className='border border-black w-full rounded-xl p-2'
 					placeholder='Enter Nuke Code to try fetch DATA'
 					required
 				/>
 				<button
 					type='submit'
-					className='rounded-xl bg-blue-700 text-white p-2 w-full'
+					className='rounded-xl bg-blue-700 text-white p-2 my-1 w-full'
 				>
 					Try
 				</button>
 			</form>
 
-			<form onSubmit={submittedNum} className='m-3 w-11/12'>
+			<form onSubmit={submittedNum} className='m-2 w-full'>
 				<input
 					type='number'
 					name='number'
-					className='border border-black w-full'
+					className='border border-black w-full rounded-xl p-2'
 					required
 					placeholder='Enter Nhentai Gallery Number to open in new tab'
 				/>
 				<button
 					type='submit'
-					className='rounded-xl bg-blue-700 text-white p-2 w-full'
+					className='rounded-xl bg-blue-700 my-1 text-white p-2 w-full'
 				>
 					GO
 				</button>
 			</form>
-			<div className='m-3 w-11/12'>
+			<div className='m-2 w-full'>
 				<button
-					className='rounded-xl bg-blue-700 text-white p-2 w-full'
+					className='rounded-xl bg-blue-700 text-white p-2 my-1 w-full'
 					onClick={() => {
 						navigator.clipboard
 							.readText()
@@ -123,37 +123,38 @@ const Home = () => {
 					PASTE
 				</button>
 			</div>
-			<form onSubmit={submittedForm} className='m-3 w-11/12' id='lol'>
+			<form onSubmit={submittedForm} className='m-2 w-full' id='lol'>
 				<textarea
 					name='data'
 					id='paste'
-					className='border border-black w-full h-60 min-h-[50%] p-2'
+					className='rounded-xl border border-black w-full h-60 min-h-[50%] p-2'
 					required
 					placeholder='Paste JSON data here'
 				/>
 				<button
 					type='reset'
-					className='rounded-xl bg-blue-700 w-full p-2 text-white'
+					className='rounded-xl bg-blue-700 w-full p-2 my-1 text-white'
 				>
 					Clear
 				</button>
 				<button
 					type='submit'
-					className='rounded-xl bg-blue-700 w-full p-2 text-white  mt-2'
+					className='rounded-xl bg-blue-700 w-full p-2 my-1 text-white'
 				>
 					GO
 				</button>
 			</form>
 
-			<div className='m-3 w-11/12'>
+			<div className='m-2 w-full'>
 				<textarea
 					id='resp'
-					className='border border-black w-full h-60 min-h-[50%] p-2'
+					className='rounded-xl p-2 border border-black w-full h-60 min-h-[50%] '
+					placeholder='Formatted JSON Response will be here'
 					required
 					readOnly
 				/>
 			</div>
-			<div className='m-3 w-11/12'>
+			<div className='m-2 w-full'>
 				<Zipper fileName={file_title} data={file_data} />
 			</div>
 		</div>
