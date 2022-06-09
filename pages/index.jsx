@@ -14,6 +14,7 @@ const Home = () => {
 	}
 
 	function submittedForm(e) {
+
 		e.preventDefault();
 		var input = e.target.data.value;
 
@@ -80,10 +81,12 @@ const Home = () => {
 					type='number'
 					name='nuke_code'
 					className='border border-black w-full'
+					placeholder='Enter Nuke Code to try fetch DATA'
+					required
 				/>
 				<button
 					type='submit'
-					className='rounded bg-blue-700 text-white p-2 w-full'
+					className='rounded-xl bg-blue-700 text-white p-2 w-full'
 				>
 					Try
 				</button>
@@ -94,17 +97,19 @@ const Home = () => {
 					type='number'
 					name='number'
 					className='border border-black w-full'
+					required
+					placeholder='Enter Nhentai Gallery Number to open in new tab'
 				/>
 				<button
 					type='submit'
-					className='rounded bg-blue-700 text-white p-2 w-full'
+					className='rounded-xl bg-blue-700 text-white p-2 w-full'
 				>
 					GO
 				</button>
 			</form>
 			<div className='m-3 w-11/12'>
 				<button
-					className='rounded bg-blue-700 text-white p-2 w-full'
+					className='rounded-xl bg-blue-700 text-white p-2 w-full'
 					onClick={() => {
 						navigator.clipboard
 							.readText()
@@ -118,11 +123,13 @@ const Home = () => {
 					PASTE
 				</button>
 			</div>
-			<form onSubmit={submittedForm} className='m-3 w-11/12'>
+			<form onSubmit={submittedForm} className='m-3 w-11/12' id='lol'>
 				<textarea
 					name='data'
 					id='paste'
 					className='border border-black w-full h-60 min-h-[50%] p-2'
+					required
+					placeholder='Paste JSON data here'
 				/>
 				<button
 					type='reset'
@@ -142,6 +149,8 @@ const Home = () => {
 				<textarea
 					id='resp'
 					className='border border-black w-full h-60 min-h-[50%] p-2'
+					required
+					readOnly
 				/>
 			</div>
 			<div className='m-3 w-11/12'>
