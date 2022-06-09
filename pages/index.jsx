@@ -1,3 +1,4 @@
+import { data } from 'autoprefixer';
 import Zipper from 'components/Zipper';
 import Head from 'next/head';
 import { useState } from 'react';
@@ -5,8 +6,6 @@ import { useState } from 'react';
 const Home = () => {
 	const [file_title, setFiletitle] = useState('');
 	const [file_data, setFiledata] = useState('');
-
-	var data = '';
 
 	function submittedNum(e) {
 		e.preventDefault();
@@ -57,11 +56,39 @@ const Home = () => {
 		// }
 	}
 
+	function tryGet(e) {
+		e.preventDefault()
+
+		var nuke_code = e.target.nuke_code.value
+		fetch('https://jsonify-nhentai.herokuapp.com/' + nuke_code).then(data => data.json()).then(resp => {
+			document.getElementById('paste').value = JSON.stringify(
+				resp,
+				null,
+				4
+			);
+		});
+		
+			
+	}
 	return (
 		<div className='w-screen flex flex-col text-center justify-center'>
 			<Head>
 				<title>Tachiyomi - Local Manga Detail</title>
 			</Head>
+			<form onSubmit={tryGet} className='m-3 w-11/12'>
+				<input
+					type='number'
+					name='nuke_code'
+					className='border border-black w-full'
+				/>
+				<button
+					type='submit'
+					className='rounded bg-blue-700 text-white p-2 w-full'
+				>
+					Try
+				</button>
+			</form>
+
 			<form onSubmit={submittedNum} className='m-3 w-11/12'>
 				<input
 					type='number'
@@ -122,6 +149,6 @@ const Home = () => {
 			</div>
 		</div>
 	);
-};
+}
 
 export default Home;

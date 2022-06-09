@@ -3,6 +3,7 @@ import saveAs from 'file-saver';
 
 export default function Zipper({ fileName, data }) {
 	function ollo() {
+		
 		var ZIP = new JSZip();
 		ZIP.file('details.json', data);
 		var img = ZIP.folder('00');
