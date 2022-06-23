@@ -1,20 +1,23 @@
 import JSZip from 'jszip';
 import saveAs from 'file-saver';
 
-export default function Zipper({ fileName, data }) {
+export default function Zipper({ fileName, data, num }) {
 	function ollo() {
 		
 		var ZIP = new JSZip();
 		ZIP.file('details.json', data);
 		var folderCount = document.getElementById('folderCount').value
 		console.log(folderCount);
-		for (let index = 0; index < folderCount; index++) {
+		for (let index = 1; index < folderCount + 1; index++) {
 			ZIP.folder(index.toString());
 		}
 		ZIP.generateAsync({ type: 'blob' }).then(function (content) {
 			// see FileSaver.js
 			saveAs(content, fileName + '.zip');
 		});
+
+		var num = 'https://nhentai.net/g/' + num + '/download';
+		window.open(num, '_blank');
 	}
 	return (
 		<div className='w-screen flex flex-col text-center justify-center'>
@@ -33,7 +36,7 @@ export default function Zipper({ fileName, data }) {
 				className='rounded bg-blue-700 text-white p-2 '
 				onClick={ollo}
 			>
-				Download the zip
+				Download the Content
 			</button>
 		</div>
 	);

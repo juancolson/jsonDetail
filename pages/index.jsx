@@ -6,9 +6,13 @@ import { useState } from 'react';
 const Home = () => {
 	const [file_title, setFiletitle] = useState('');
 	const [file_data, setFiledata] = useState('');
+	const [file_num, setFileNum] = useState('');
+
 
 	function submittedNum(e) {
 		e.preventDefault();
+		setFileNum(e.target.number.value);
+
 		var num = 'https://nhentai.net/api/gallery/' + e.target.number.value;
 		window.open(num, '_blank');
 	}
@@ -123,7 +127,7 @@ const Home = () => {
 					PASTE
 				</button>
 			</div>
-			<form onSubmit={submittedForm} className='m-2 w-full' id='lol'>
+			<form onSubmit={submittedForm} className='m-2 w-[100% - 5px]' id='lol'>
 				<textarea
 					name='data'
 					id='paste'
@@ -155,7 +159,7 @@ const Home = () => {
 				/>
 			</div>
 			<div className='m-2 w-full'>
-				<Zipper fileName={file_title} data={file_data} />
+				<Zipper fileName={file_title} data={file_data} num={file_num } />
 			</div>
 		</div>
 	);
