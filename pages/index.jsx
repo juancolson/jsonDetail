@@ -1,4 +1,3 @@
-import { data } from 'autoprefixer';
 import Zipper from 'components/Zipper';
 import Head from 'next/head';
 import { useState } from 'react';
@@ -6,7 +5,7 @@ import { useState } from 'react';
 const Home = () => {
 	const [file_title, setFiletitle] = useState('');
 	const [file_data, setFiledata] = useState('');
-	const [file_num, setFileNum] = useState('');
+	const [file_num, setFileNum] = useState(0);
 
 
 	function submittedNum(e) {
@@ -29,6 +28,7 @@ const Home = () => {
 		response['title'] = sample.title.pretty;
 
 		setFiletitle(sample.title.pretty);
+		setFileNum(sample.id)
 
 		var mainInfo = sample.tags;
 
@@ -61,41 +61,12 @@ const Home = () => {
 		// }
 	}
 
-	function tryGet(e) {
-		e.preventDefault()
-
-		var nuke_code = e.target.nuke_code.value
-		fetch('https://jsonify-nhentai.herokuapp.com/' + nuke_code).then(data => data.json()).then(resp => {
-			document.getElementById('paste').value = JSON.stringify(
-				resp,
-				null,
-				4
-			);
-		});
-		
-			
-	}
 	return (
 		<div className='w-screen flex flex-col text-center justify-center'>
 			<Head>
 				<title>Tachiyomi - Local Manga Detail</title>
 			</Head>
-			<form onSubmit={tryGet} className='m-2 w-full'>
-				<input
-					type='number'
-					name='nuke_code'
-					className='border border-black w-full rounded-xl p-2'
-					placeholder='Enter Nuke Code to try fetch DATA'
-					required
-				/>
-				<button
-					type='submit'
-					className='rounded-xl bg-blue-700 text-white p-2 my-1 w-full'
-				>
-					Try
-				</button>
-			</form>
-
+			
 			<form onSubmit={submittedNum} className='m-2 w-full'>
 				<input
 					type='number'
@@ -134,6 +105,11 @@ const Home = () => {
 					className='rounded-xl border border-black w-full h-60 min-h-[50%] p-2'
 					required
 					placeholder='Paste JSON data here'
+					// onChange={(e) => {
+					// 	const value = e.target.value;
+					// 	var json = JSON.stringify(JSON.parse(value), null, 4);
+					// 	e.target.value = json;
+					// }}
 				/>
 				<button
 					type='reset'
@@ -159,7 +135,7 @@ const Home = () => {
 				/>
 			</div>
 			<div className='m-2 w-full'>
-				<Zipper fileName={file_title} data={file_data} num={file_num } />
+				<Zipper fileName={file_title} data={file_data} num={file_num} />
 			</div>
 		</div>
 	);
